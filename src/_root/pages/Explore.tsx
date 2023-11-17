@@ -7,6 +7,7 @@ import { useGetPosts, useSearchPosts } from "@/lib/react-query/queriesAndMutatio
 import { useEffect, useState } from "react"
 import { useInView } from "react-intersection-observer"
 
+
 const Explore = () => {
 
   const {ref,inView} = useInView()
@@ -32,7 +33,7 @@ const Explore = () => {
   }
 
   const shouldShowSearchRelults  = searchValue !== '';
-  const shouldShowPosts = !shouldShowSearchRelults && posts.pages.every((item) => item.documents.length === 0)
+  const shouldShowPosts = !shouldShowSearchRelults && posts.pages.every((item) => item?.documents.length === 0)
 
    return (
     <div className="explore-container">
@@ -63,7 +64,7 @@ const Explore = () => {
         ): shouldShowPosts ? (
             <p className="text-light-4 mt-10 text-center w-full">End Of posts</p>
         ): posts.pages.map((item,index) => (
-          <GridPostList key={`page-${index}`} posts={item.documents}/>
+          <GridPostList key={`page-${index}`} posts={item?.documents}/>
         ))}
       </div>
       {hasNextPage && !searchValue && (
